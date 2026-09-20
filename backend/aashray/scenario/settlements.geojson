@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "id": "gahar", "name": "Gahar hamlet", "source": "rule" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [77.1864, 32.2382],
+          [77.1898, 32.2382],
+          [77.1898, 32.2406],
+          [77.1864, 32.2406],
+          [77.1864, 32.2382]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "town", "name": "Tehsil town", "source": "rule" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [77.1895, 32.2438],
+          [77.1935, 32.2438],
+          [77.1935, 32.2474],
+          [77.1895, 32.2474],
+          [77.1895, 32.2438]
+        ]]
+      }
+    }
+  ]
+}

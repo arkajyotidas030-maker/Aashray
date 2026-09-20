@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "valley-slope-mask", "source": "simulated" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [77.1848, 32.2368],
+          [77.1918, 32.2372],
+          [77.1926, 32.2422],
+          [77.1905, 32.2470],
+          [77.1852, 32.2464],
+          [77.1839, 32.2408],
+          [77.1848, 32.2368]
+        ]]
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans", "Noto Sans Devanagari", system-ui, sans-serif;
+  --font-display: "Fraunces", "Noto Sans Devanagari", serif;
+  --color-ink: #14201c;
+  --color-paper: #f4efe4;
+  --color-moss: #134e4a;
+  --color-moss-2: #0f766e;
+  --color-clay: #c2410c;
+  --color-sand: #e7dcc8;
+  --color-ops: #0c1210;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.leaflet-container {
+  background: #1c1917;
+  font-family: var(--font-sans);
+  border-radius: inherit;
+}
+
+.leaflet-control-zoom a {
+  border: 0 !important;
+  background: rgba(12, 18, 16, 0.82) !important;
+  color: #ecfdf5 !important;
+  width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+}
+
+.leaflet-control-scale-line {
+  border-color: #fff !important;
+  color: #fff !important;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.hi body,
+html[lang="hi"] body {
+  font-family: "Noto Sans Devanagari", "Noto Sans", sans-serif;
+}

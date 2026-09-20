@@ -1,0 +1,21 @@
+{
+  "hub": "hub",
+  "cascade": "Medical access delayed — last road blocked.",
+  "nodes": [
+    {"id": "hub", "name": "District Hospital / tehsil hub", "lat": 32.2462, "lon": 77.1914},
+    {"id": "town", "name": "Tehsil town", "settlement": "Tehsil town", "lat": 32.2458, "lon": 77.1910},
+    {"id": "gahar", "name": "Gahar hamlet", "settlement": "Gahar hamlet", "lat": 32.2390, "lon": 77.1875},
+    {"id": "valley-phc", "name": "Valley PHC", "lat": 32.2371, "lon": 77.1858}
+  ],
+  "edges": [
+    {"id": "edge-town", "u": "hub", "v": "town"},
+    {"id": "edge-14", "u": "hub", "v": "gahar", "last_access": true},
+    {"id": "edge-15", "u": "gahar", "v": "valley-phc"}
+  ],
+  "poi_nodes": {
+    "hospital-town": "hub",
+    "hospital-valley": "valley-phc",
+    "fire-1": "town",
+    "shelter-1": "town"
+  }
+}

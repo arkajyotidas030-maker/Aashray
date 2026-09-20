@@ -1,0 +1,74 @@
+{
+  "1": {
+    "rainfall_index": 1,
+    "evidence": [],
+    "checkins": [],
+    "blocked_edges": []
+  },
+  "2": {
+    "rainfall_index": 1,
+    "evidence": [
+      {
+        "kind": "sos",
+        "lat": 32.2395,
+        "lon": 77.1880,
+        "raw_text": "Landslide on the hill road, rocks on the slope",
+        "emergency_type": "landslide",
+        "people_count": 3,
+        "severity": 4,
+        "trapped": false,
+        "injury": true
+      },
+      {
+        "kind": "report",
+        "lat": 32.2398,
+        "lon": 77.1884,
+        "raw_text": "Road blocked by debris, cannot pass",
+        "emergency_type": "blocked_road",
+        "people_count": 0,
+        "severity": 3,
+        "trapped": false,
+        "injury": false
+      },
+      {
+        "kind": "sos",
+        "lat": 32.2392,
+        "lon": 77.1877,
+        "raw_text": "Vehicle trapped under debris after the slide",
+        "emergency_type": "trapped",
+        "people_count": 2,
+        "severity": 5,
+        "trapped": true,
+        "injury": true
+      },
+      {
+        "kind": "photo_meta",
+        "lat": 32.2396,
+        "lon": 77.1881,
+        "raw_text": "Debris photo on the blocked road after landslide",
+        "emergency_type": "landslide",
+        "people_count": 0,
+        "severity": 3,
+        "trapped": false,
+        "injury": false
+      }
+    ]
+  },
+  "5": {
+    "checkins": [
+      {
+        "status": "safe",
+        "lat": 32.2462,
+        "lon": 77.1914
+      }
+    ]
+  },
+  "7": {
+    "blocked_edges": [
+      {
+        "edge_id": "edge-14",
+        "source": "simulated"
+      }
+    ]
+  }
+}

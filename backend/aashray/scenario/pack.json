@@ -1,0 +1,124 @@
+{
+  "access": {
+    "last_access_edge": "edge-14",
+    "settlement": "Gahar hamlet",
+    "cascade": "Medical access delayed — last road blocked."
+  },
+  "pois": [
+    {
+      "id": "hospital-town",
+      "name": "District Hospital",
+      "kind": "hospital",
+      "lat": 32.2462,
+      "lon": 77.1914,
+      "available": true
+    },
+    {
+      "id": "hospital-valley",
+      "name": "Valley PHC",
+      "kind": "hospital",
+      "lat": 32.2371,
+      "lon": 77.1858,
+      "available": true
+    },
+    {
+      "id": "fire-1",
+      "name": "Tehsil Fire Post",
+      "kind": "fire",
+      "lat": 32.2448,
+      "lon": 77.1892,
+      "available": true
+    },
+    {
+      "id": "shelter-1",
+      "name": "School shelter",
+      "kind": "shelter",
+      "lat": 32.2435,
+      "lon": 77.1925,
+      "available": true
+    }
+  ],
+  "zones": [
+    {
+      "level": "critical",
+      "coordinates": [
+        [77.1866, 32.2384],
+        [77.1896, 32.2385],
+        [77.1899, 32.2404],
+        [77.1869, 32.2405],
+        [77.1866, 32.2384]
+      ]
+    },
+    {
+      "level": "warning",
+      "coordinates": [
+        [77.1855, 32.2376],
+        [77.1910, 32.2377],
+        [77.1914, 32.2414],
+        [77.1858, 32.2415],
+        [77.1855, 32.2376]
+      ]
+    },
+    {
+      "level": "nearby",
+      "coordinates": [
+        [77.1835, 32.2365],
+        [77.1945, 32.2366],
+        [77.1950, 32.2475],
+        [77.1838, 32.2476],
+        [77.1835, 32.2365]
+      ]
+    }
+  ],
+  "hazard": {
+    "coordinates": [
+      [77.1874, 32.2389],
+      [77.1888, 32.2389],
+      [77.1889, 32.2400],
+      [77.1875, 32.2400],
+      [77.1874, 32.2389]
+    ]
+  },
+  "roads": [
+    {
+      "edge_id": "edge-14",
+      "coordinates": [
+        [77.1870, 32.2390],
+        [77.1885, 32.2396]
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "id": "fast",
+      "label": "Fast valley road",
+      "duration_min": 18,
+      "coordinates": [
+        [77.1860, 32.2375],
+        [77.1880, 32.2395],
+        [77.1914, 32.2462]
+      ]
+    },
+    {
+      "id": "mid",
+      "label": "Ridge connector",
+      "duration_min": 27,
+      "coordinates": [
+        [77.1860, 32.2375],
+        [77.1850, 32.2410],
+        [77.1914, 32.2462]
+      ]
+    },
+    {
+      "id": "safe",
+      "label": "Longer ridge road",
+      "duration_min": 34,
+      "coordinates": [
+        [77.1860, 32.2375],
+        [77.1840, 32.2420],
+        [77.1890, 32.2450],
+        [77.1914, 32.2462]
+      ]
+    }
+  ]
+}
