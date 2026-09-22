@@ -32,6 +32,14 @@ def seed_if_demo(db: Session) -> None:
             if lat is not None and existing.last_lat is None:
                 existing.last_lat = lat
                 existing.last_lon = lon
+            if (
+                email == settings.seed_citizen_email
+                and existing.last_lat is not None
+                and abs(existing.last_lat - TOWN[0]) < 1e-4
+                and existing.last_lon is not None
+                and abs(existing.last_lon - TOWN[1]) < 1e-4
+            ):
+                existing.last_lat, existing.last_lon = 32.2395, 77.1880
             return
         db.add(
             User(
@@ -43,7 +51,7 @@ def seed_if_demo(db: Session) -> None:
             )
         )
 
-    upsert_user(settings.seed_citizen_email, "citizen", *TOWN)
+    upsert_user(settings.seed_citizen_email, "citizen", 32.2395, 77.1880)
     upsert_user(settings.seed_ops_email, "responder", *TOWN)
     upsert_user("hamlet.a@demo", "citizen", *HAMLET_A)
     upsert_user("hamlet.b@demo", "citizen", *HAMLET_B)

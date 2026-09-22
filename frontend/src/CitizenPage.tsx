@@ -5,6 +5,7 @@ import { api, clearSession } from "./api";
 import { DecisionMap } from "./DecisionMap";
 import { useI18n } from "./I18nProvider";
 import { LangToggle } from "./LangToggle";
+import { LogoMark } from "./LogoMark";
 import type { CopyKey } from "./i18n";
 
 const DEMO = { lat: 32.2395, lon: 77.188 };
@@ -23,6 +24,7 @@ export function CitizenPage() {
   const [trapped, setTrapped] = useState(false);
   const [injury, setInjury] = useState(false);
   const [msg, setMsg] = useState("");
+  const [err, setErr] = useState("");
   const [smsCopied, setSmsCopied] = useState(false);
   const [checkSaved, setCheckSaved] = useState(false);
   const [photo, setPhoto] = useState<File | null>(null);
@@ -46,8 +48,10 @@ export function CitizenPage() {
     },
     onSuccess: (r) => {
       setMsg(`${t("sent")} ${r.incident_code} (${Math.round(r.cluster_confidence * 100)}%)`);
+      setErr("");
       qc.invalidateQueries({ queryKey: ["c-snap"] });
     },
+    onError: () => setErr(t("sosFail")),
   });
   const check = useMutation({
     mutationFn: (status: string) => api.checkin({ status, lat, lon, source: "live" }),
@@ -105,7 +109,7 @@ export function CitizenPage() {
       <header className="sticky top-0 z-20 border-b border-sand/80 bg-paper/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="grid h-10 w-10 place-items-center rounded-2xl bg-moss text-sm font-bold text-amber-100 shadow">आ</span>
+          <LogoMark crop={false} className="h-12 w-auto" />
           <div>
             <p className="font-display text-lg leading-none">{t("brand")}</p>
             <p className="text-[11px] text-moss/70">{t("citizen")}</p>
@@ -132,16 +136,30 @@ export function CitizenPage() {
           ) : null}
 
           <div
-            className={`rounded-3xl px-5 py-4 shadow-sm ${
+            className={`rounded-3xl px-5 py-5 shadow-md ${
               snap?.zone_level === "critical"
-                ? "bg-orange-100 text-orange-950"
-                : snap?.zone_level
-                  ? "bg-sky-50 text-sky-950"
-                  : "bg-white"
+                ? "bg-orange-600 text-white"
+                : snap?.zone_level === "warning"
+                  ? "bg-amber-500 text-amber-950"
+                  : snap?.zone_level
+                    ? "bg-sky-700 text-white"
+                    : "bg-white text-ink"
             }`}
           >
-            <p className="text-xs font-bold uppercase tracking-wider">{t("alerts")}</p>
-            <p className="mt-1 text-sm leading-relaxed">{alertCopy}</p>
+            <p className="text-xs font-bold uppercase tracking-[0.18em]">{t("alertBanner")}</p>
+            <p className="mt-1 font-display text-3xl">
+              {snap?.zone_level === "critical"
+                ? t("zoneCritical")
+                : snap?.zone_level === "warning"
+                  ? t("zoneWarning")
+                  : snap?.zone_level
+                    ? t("zoneNearby")
+                    : "—"}
+            </p>
+            <p className="mt-2 text-sm leading-relaxed">{alertCopy}</p>
+            {snap?.zone_level && snap.zone_level !== "critical" ? (
+              <p className="mt-2 text-xs opacity-80">{t("notCriticalYet")}</p>
+            ) : null}
           </div>
 
           <section className="overflow-hidden rounded-[1.75rem] bg-black shadow-lg ring-1 ring-black/10">
@@ -206,7 +224,23 @@ export function CitizenPage() {
 
           <section className="rounded-3xl bg-white p-5 shadow-sm">
             <h2 className="font-display text-2xl">{t("sosTitle")}</h2>
-            <p className="mt-1 text-sm leading-relaxed text-ink/65">{t("sosBody")}</p>
+            <p className="mt-1 text-sm leading-relaxed text-ink/65">{t("juryCitizen")}</p>
+            <button
+              disabled={sos.isPending}
+              onClick={() => sos.mutate()}
+              className="mt-4 w-full rounded-2xl bg-clay py-5 text-lg font-bold text-white shadow-lg shadow-orange-900/25 hover:bg-orange-800 disabled:opacity-60"
+            >
+              {sos.isPending ? t("sending") : t("sos")}
+            </button>
+            {err && <p className="mt-3 rounded-2xl bg-red-50 px-3 py-2 text-sm text-red-800">{err}</p>}
+            {msg && (
+              <div className="mt-3 rounded-2xl bg-emerald-700 px-4 py-4 text-white shadow-lg">
+                <p className="text-xs font-bold uppercase tracking-wider">{t("sosOkTitle")}</p>
+                <p className="mt-1 font-display text-xl">{msg}</p>
+                <p className="mt-1 text-xs text-emerald-100">{t("clusterNote")}</p>
+              </div>
+            )}
+            <p className="mt-4 text-sm leading-relaxed text-ink/65">{t("sosBody")}</p>
             <label className="mt-4 block text-xs font-semibold uppercase tracking-wide text-ink/45">{t("type")}</label>
             <div className="mt-2 grid grid-cols-2 gap-2">
               {(
@@ -274,20 +308,6 @@ export function CitizenPage() {
                 {t("useGps")}
               </button>
             </div>
-            <button
-              disabled={sos.isPending}
-              onClick={() => sos.mutate()}
-              className="mt-5 hidden w-full rounded-2xl bg-clay py-4 text-base font-bold text-white shadow-lg shadow-orange-900/20 hover:bg-orange-800 disabled:opacity-60 lg:block"
-            >
-              {sos.isPending ? t("sending") : t("sos")}
-            </button>
-            {msg && (
-              <p className="mt-3 rounded-2xl bg-emerald-50 px-3 py-2 text-sm text-moss">
-                {msg}
-                <br />
-                <span className="text-xs text-ink/50">{t("clusterNote")}</span>
-              </p>
-            )}
           </section>
 
           <section className="rounded-3xl bg-white p-5 shadow-sm">

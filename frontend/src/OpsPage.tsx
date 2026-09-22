@@ -7,6 +7,7 @@ import { api, clearSession } from "./api";
 import { DecisionMap } from "./DecisionMap";
 import { useI18n } from "./I18nProvider";
 import { LangToggle } from "./LangToggle";
+import { LogoMark } from "./LogoMark";
 
 const LAYER_KEYS = ["incidents", "risk", "zones", "visibility", "routes", "infra", "safety", "blocked"] as const;
 
@@ -58,7 +59,7 @@ export function OpsPage() {
     <div className="flex min-h-screen flex-col bg-ops text-emerald-50">
       <header className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 bg-black/20 px-4 py-3">
         <div className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-2xl bg-amber-200 font-display text-lg text-ops">आ</span>
+          <LogoMark crop={false} className="h-12 w-auto" />
           <div>
             <p className="font-display text-lg leading-none">{t("brand")} · {t("opsTitle")}</p>
             <p className="text-[11px] text-emerald-200/70">{t("thesis")}</p>

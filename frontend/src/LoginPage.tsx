@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { api, setSession } from "./api";
 import { useI18n } from "./I18nProvider";
 import { LangToggle } from "./LangToggle";
+import { LogoMark } from "./LogoMark";
 
 export function LoginPage() {
-  const { t, lang } = useI18n();
+  const { t } = useI18n();
   const nav = useNavigate();
   const [email, setEmail] = useState("citizen@demo");
   const [password, setPassword] = useState("demo");
@@ -32,7 +33,7 @@ export function LoginPage() {
       <header className="px-6 py-5">
         <div className="mx-auto flex max-w-6xl items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-moss text-lg font-bold text-amber-100 shadow-lg">आ</span>
+          <LogoMark crop={false} className="h-14 w-auto" />
           <div>
             <p className="font-display text-xl font-semibold tracking-tight text-moss">{t("brand")}</p>
             <p className="text-xs text-moss/70">VBYLD · Hack for Social Cause</p>
@@ -44,9 +45,7 @@ export function LoginPage() {
 
       <main className="mx-auto grid max-w-6xl gap-10 px-6 pb-16 pt-4 md:grid-cols-2 md:items-center">
         <section>
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.28em] text-clay">
-            {lang === "hi" ? "AASHRAY · आश्रय" : "आश्रय · AASHRAY"}
-          </p>
+          <LogoMark crop={false} className="mb-6 h-auto w-full max-w-xs" />
           <h1 className="font-display text-4xl leading-tight text-ink md:text-5xl">{t("tagline")}</h1>
           <p className="mt-5 max-w-md text-base leading-relaxed text-ink/75">{t("welcomeOps")}</p>
           <ul className="mt-8 space-y-3 text-sm text-ink/80">
