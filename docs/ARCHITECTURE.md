@@ -2,14 +2,28 @@
 
 One **FastAPI** process, one **SQLite** file, two **React** surfaces. Polling (~2s), not WebSockets. No Kafka, PostGIS, Firebase, or Kubernetes.
 
+```mermaid
+flowchart LR
+  citizen[Citizen screen]
+  ops[Responder screen]
+  api[FastAPI /api/v1]
+  fuse[Fusion score]
+  rules[Rules and GIS]
+  db[(SQLite)]
+  pack[Scenario pack]
+
+  citizen -->|SOS, check-in, photo| api
+  ops -->|snapshot poll, clock, assign| api
+  api --> db
+  api --> fuse
+  fuse --> rules
+  pack --> rules
+  rules --> db
+  api -->|own zone only| citizen
+  api -->|locker, priority, gaps| ops
 ```
-Citizen / Ops SPA  --JSON-->  FastAPI /api/v1
-                               | persist evidence/check-ins
-                               | fuse (geo/time/category/TF-IDF)
-                               | decision: zones, isolation, routes, priority
-                               v
-                             SQLite + scenario pack (GeoJSON/JSON)
-```
+
+The same flow in one line: the citizen or responder screen sends JSON to one FastAPI process, which stores evidence, fuses it, runs the rules, and reads the SQLite file plus the packed scenario.
 
 ## Ingest
 

@@ -3,6 +3,16 @@
 Student prototype for **VBYLD Hack for Social Cause** (Sept 2026).  
 Situation awareness for **one hill-district landslide scenario** — not official NDMA/SDRF software.
 
+## What this repository contains
+
+| Form item | Where it is |
+|---|---|
+| README, setup, environment variables | This file, plus `backend/.env.example` and `frontend/.env.example` |
+| Technical design, with a diagram | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) |
+| Sample data | [`backend/aashray/scenario/`](backend/aashray/scenario/) (roads, zones, ticks, shelters) |
+| Test cases | [`backend/tests/`](backend/tests/) and [`frontend/e2e/`](frontend/e2e/) |
+| License | [`LICENSE`](LICENSE) (MIT) |
+
 Thesis: fuse citizen **evidence** into **incidents**, show GIS + rules (zones, isolation, safer-not-faster routes, explainable priority), and mark where the picture is **incomplete**. Unconfirmed check-ins are **not** missing persons. The demo still runs with the language model **down**.
 
 ## What is live vs simulated
